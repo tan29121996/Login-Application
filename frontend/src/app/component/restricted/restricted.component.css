@@ -1,0 +1,14 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #333;
+    margin: 0;
+}
+
+.large-text {
+    font-size: 48px;
+    font-weight: bold;
+    color: #f2f2f2;
+}

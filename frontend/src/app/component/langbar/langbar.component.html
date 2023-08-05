@@ -1,0 +1,16 @@
+<nav class="navbar navbar-expand-lg navbar-dark" style="position: absolute; right: 20px">
+  <div class="nav-item profile-icon">
+    <div class="nav-link mt-2" style="position: relative;">
+      <div class="dropdown d-flex">
+        <div class="mx-2 text-white">Language</div>
+        <button class="dropdown-toggle" (click)="toggleDropdown()"></button>
+        <ul class="dropdown-menu" [class.show]="showDropdown">
+          <li (click)="switchLanguage('en')" class="dropdown-item">English</li>
+          <li (click)="switchLanguage('ch')" class="dropdown-item">中文</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<router-outlet></router-outlet>

@@ -1,0 +1,186 @@
+<app-langbar></app-langbar>
+<section class="vh-100" style="background-image: url('https://news.microsoft.com/source/wp-content/uploads/2023/06/AdobeStock_428659694_Resized_2000px-1024x683.jpg');
+  background-repeat: no-repeat; background-size: cover;">
+  
+  <div class="container-fluid h-custom center-section">
+    <div class="row align-items-center h-100">
+      <div class="container align-items-center ps-0 rounded-4 bg-white login-container" style="width: 25%">
+        <div class="pb-4 px-4">
+          <div class="text-center">
+            <h2 class="fw-bold m-4 text-center">{{ 'Registration' | translate }}</h2>
+            
+            <form [formGroup]="registerFormGroup" (ngSubmit)="onSubmit()">
+              <!-- User Form Group -->
+              <div formGroupName="user" class="form-area">
+                <!-- 2 column grid layout with text inputs for the first and last names -->
+                <div class="row">
+                  <div class="col-md-6 mb-3">
+                    <div class="form-floating mb-1">
+                      <input formControlName="firstName" type="text" class="form-control" id="" placeholder="First Name"
+                        [ngClass]="{
+                          'is-invalid':
+                            firstName.invalid &&
+                            (firstName.dirty || firstName.touched)
+                        }" />
+                      <label for="">{{ 'FirstName' | translate }}</label>
+                      <!-- Error message for firstName: Required, at least 2 characters & notOnlyWhiteSpace-->
+                      <div *ngIf="
+                          firstName.invalid &&
+                          (firstName.dirty || firstName.touched)
+                        " class="invalid-feedback">
+                        <div *ngIf="firstName.errors?.['required'] || firstName.errors?.['notOnlyWhiteSpace']">
+                          {{ 'FirstNameVal1' | translate }}
+                        </div>
+                        <div *ngIf="firstName.errors?.['minlength']">
+                          {{ 'FirstNameVal2' | translate }}
+                        </div>
+                      </div>
+                      <!-- Error message end -->
+                    </div>
+                  </div>
+
+                  <div class="col-md-6 mb-3">
+                    <div class="form-floating mb-1">
+                      <input formControlName="lastName" type="text" class="form-control" id="" placeholder="Last Name"
+                        [ngClass]="{
+                          'is-invalid':
+                            lastName.invalid &&
+                            (lastName.dirty || lastName.touched)
+                        }" />
+                      <label for="">{{ 'LastName' | translate }}</label>
+                    </div>
+                    <!-- Error validation for lastName: Required, at least 2 characters & notOnlyWhiteSpace-->
+                    <div *ngIf="
+                        lastName.invalid && (lastName.dirty || lastName.touched)
+                      " class="invalid-feedback" style="display: block">
+                      <div *ngIf="lastName.errors?.['required'] || lastName.errors?.['notOnlyWhiteSpace']">
+                        {{ 'LastNameVal1' | translate }}
+                      </div>
+                      <div *ngIf="lastName.errors?.['minlength']">
+                        {{ 'LastNameVal2' | translate }}
+                      </div>
+                    </div>
+                    <!-- Error validation end -->
+                  </div>
+                </div>
+
+                <!-- Roles Select -->
+
+                <div class="form-floating mb-4">
+                  <select class="form-select mb-1 w-100" style="width: 150px" formControlName="roles" [ngClass]="{
+                      'is-invalid':
+                      roles.invalid && (roles.dirty || roles.touched)
+                    }">
+                    <option selected disabled>{{ 'RoleSelect' | translate }}</option>
+                    <option value="ROLE_USER">{{ 'User' | translate }}</option>
+                    <option value="ROLE_USER, ROLE_ADMIN">{{ 'Manager' | translate }}</option>
+                  </select>
+                  <label for="">{{ 'Roles' | translate }}</label>
+                </div>
+
+                <!-- Email input -->
+                <div class="form-floating mb-4">
+                  <input formControlName="email" type="email" class="form-control" id="" placeholder="name@example.com"
+                    [ngClass]="{
+                      'is-invalid':
+                        email.invalid && (email.dirty || email.touched)
+                    }" />
+                  <label for="">{{ 'Username' | translate }}</label>
+                  <!-- Error validation for email: Required-->
+                  <div *ngIf="email.invalid && (email.dirty || email.touched)" class="invalid-feedback">
+                    <div *ngIf="email.errors?.['required']">
+                      {{ 'UsernameVal1' | translate }}
+                    </div>
+                    <div *ngIf="email.errors?.['minlength']">
+                      {{ 'UsernameVal2' | translate }}
+                    </div>
+                    <div *ngIf="email?.pending">Loading</div>
+
+                    <div *ngIf="email.errors?.['usernameAlreadyExists'] && !email?.pending">
+                      {{ 'UsernameVal3' | translate }}
+                    </div>
+                    <div *ngIf="email?.pending">Loading...</div>
+                  </div>
+                  <div class="available" *ngIf="email.valid && !email?.pending">
+                    ✓ {{ 'UsernameVal3' | translate }}
+                  </div>
+                </div>
+
+                <!-- Password input -->
+                <div class="form-floating mb-4">
+                  <input formControlName="password" type="password" class="form-control" id="" placeholder="Password"
+                    [ngClass]="{
+                      'is-invalid':
+                        password.invalid && (password.dirty || password.touched)
+                    }" />
+                  <label for="">{{ 'Password' | translate }}</label>
+                  <!-- Error validation for password: Required-->
+                  <div *ngIf="
+                      password.invalid && (password.dirty || password.touched)
+                    " class="invalid-feedback">
+                    <div *ngIf="password.errors?.['required']">
+                      {{ 'PasswordVal1' | translate }}
+                    </div>
+                    <div *ngIf="password.errors?.['minlength']">
+                      {{ 'PasswordVal2' | translate }}
+                    </div>
+                  </div>
+                  <!-- Error validation end -->
+                </div>
+
+                <!-- Confirm Password input -->
+                <div class="form-floating mb-3">
+                  <input formControlName="confirmPassword" type="password" class="form-control" id=""
+                    placeholder="Confirm Password" [ngClass]="{
+                      'is-invalid':
+                        confirmPassword.invalid &&
+                        (confirmPassword.dirty || confirmPassword.touched)
+                    }" />
+                  <label for="">{{ 'ConfirmPassword' | translate }}</label>
+
+                  <!-- Error validation for password confirmation: Required and matching password -->
+                  <div *ngIf="
+                      confirmPassword.invalid &&
+                      (confirmPassword.dirty || confirmPassword.touched)
+                    " class="invalid-feedback" style="display: block">
+                    <div *ngIf="confirmPassword.errors?.['required']">
+                      {{ 'ConfirmPasswordVal1' | translate }}
+                    </div>
+                    <div *ngIf="confirmPassword.errors?.['passwordMismatch']">
+                      {{ 'ConfirmPasswordVal2' | translate }}
+                    </div>
+                  </div>
+                  <!-- Error validation end -->
+                </div>
+
+                <!-- Checkbox -->
+                <div class="form-check d-flex mt-4 mb-4">
+                  <input formControlName="terms" class="form-check-input me-2" type="checkbox" value="" />
+                  <label class="form-check-label">
+                    {{ 'Terms' | translate }}
+                  </label>
+
+                </div>
+
+                <!-- Submit button -->
+                <button type="submit" class="btn btn-secondary mb-4" style="width: 100%"
+                  [disabled]="registerFormGroup.invalid || loading">
+                  <mat-spinner *ngIf="loading" class="spinner" color="accent" mode="indeterminate"
+                    diameter="25"></mat-spinner>
+                  <span *ngIf="!loading">{{ 'Create' | translate }}</span>
+                </button>
+
+                <p class="fw-bold mb-0">
+                  {{ 'OldUser' | translate }}
+                  <a routerLink="/login" class="link-danger text-decoration-none ms-1">{{ 'Login' | translate }}</a>
+                </p>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      </div>
+  </div>
+  <!-- Jumbotron -->
+</section>
+<!-- Section: Design Block -->

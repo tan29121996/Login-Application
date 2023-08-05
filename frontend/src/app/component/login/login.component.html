@@ -1,0 +1,58 @@
+<app-langbar></app-langbar>
+<section class="vh-100" style="background-image: url('https://news.microsoft.com/source/wp-content/uploads/2023/06/AdobeStock_428659694_Resized_2000px-1024x683.jpg');
+  background-repeat: no-repeat; background-size: cover;">
+  <div class="container-fluid h-custom center-section">
+    <div class="row align-items-center h-100">
+      <div class="container align-items-center ps-0 rounded-4 bg-white login-container" style="width: 25%">
+        <div class="pb-4 px-4">
+          <div class="text-center">
+            <img class="logo" style="object-fit: contain"
+              src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/DXC_Technology_logo_%282021%29.svg/1920px-DXC_Technology_logo_%282021%29.svg.png"
+              alt="" />
+          </div>
+
+          <form (ngSubmit)="login()" [formGroup]="loginFormGroup">
+            <!-- Username input -->
+            <div class="form-outline fw-bold mt-3 mb-4">
+              <label class="form-label" >{{'Username' | translate }}</label>
+              <input type="text" class="form-control form-control-md" placeholder="{{'EnterUsername' | translate }}"
+                formControlName="email" [ngClass]="{
+                  'is-invalid': email.invalid && (email.dirty || email.touched)
+                }" />
+              <div *ngIf="email.invalid && (email.touched || email.dirty)" class="invalid-feedback">
+                <div *ngIf="email.errors['required']">
+                  {{ 'UsernameVal1' | translate }}
+                </div>
+              </div>
+            </div>
+
+            <!-- Password input -->
+            <div class="form-outline fw-bold mb-3">
+              <label class="form-label">{{'Password' | translate }}</label>
+              <input type="password" class="form-control form-control-md" placeholder="{{'EnterPassword' | translate }}"
+                formControlName="password" [ngClass]="{
+                  'is-invalid':
+                    password.invalid && (password.dirty || password.touched)
+                }" />
+              <div *ngIf="password.invalid && (password.touched || password.dirty)" class="invalid-feedback">
+                <div *ngIf="password.errors['required']">
+                  {{ 'PasswordVal1' | translate }}
+                </div>
+              </div>
+            </div>
+
+            <div class="mt-3 pt-2 d-flex" style="flex-direction: column;">
+              <button type="submit" class="btn login-button mt-2" style="color: #eee;">{{'Login' | translate }}</button>
+              <p class="fw-bold mt-3 pt-1 mb-0">
+                {{'NewUser' | translate }}
+                <a routerLink="/signup" class="link-danger text-decoration-none ms-1">
+                  {{'Register' | translate }}
+                </a>
+              </p>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

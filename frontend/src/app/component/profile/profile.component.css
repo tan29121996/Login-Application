@@ -1,0 +1,49 @@
+body {
+  background-color: #eef2f5 !important;
+  margin-top: 20px;
+}
+
+.background {
+  background-image: url('https://news.microsoft.com/source/wp-content/uploads/2023/06/AdobeStock_428659694_Resized_2000px-1024x683.jpg'); 
+  background-repeat: no-repeat; 
+  background-size: cover;
+  padding: 30px 0px 10px 0px; 
+  height: 100vh; 
+  display: flex; 
+  justify-content: center; 
+  align-items: center;
+}
+
+.panel {
+  margin-bottom: 30px;
+  color: #696969;
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.08);
+}
+
+.user-data {
+  font-family: 'Roboto', sans-serif;
+  padding: 20px 0px;
+}
+
+.name {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid;
+}
+
+.followbtn {
+  float: right;
+  margin: 22px;
+  background: #3e8392;
+  color: #eee;
+  border: 0
+}
+
+.followbtn:hover {
+  background: #5b9da8;
+}
+

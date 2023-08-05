@@ -1,0 +1,26 @@
+<app-langbar></app-langbar>
+<div class="background">
+  <div class="panel panel-default">
+    <div style="display: flex; flex-direction: column; align-items: center;">
+      <div class="mt-4 text-center">
+        <div class="name">
+          {{ 'Welcome' | translate }}, {{ user.firstName | titlecase }} {{ user.LastName | titlecase }}
+        </div>
+        <div>{{ 'Username' | translate }}: {{ user.email }}</div>
+        <div *ngIf="authenticationService.isAdmin(); else userDiv">
+          <div>{{ 'Role' | translate }}: {{ 'Manager' | translate }}</div>
+        </div>
+        
+        <ng-template #userDiv>
+          <div>{{ 'Role' | translate }}: {{ 'User' | translate }}</div>
+        </ng-template>
+        <img class="mt-2 px-4"
+          src="https://blog.vantagecircle.com/content/images/size/w1000/2020/07/welcome-messages-for-employees.png" />
+      </div>
+      <a *ngIf="authenticationService.isAdmin()" class="mt-4" href="/restricted">{{ 'Link' | translate }}</a>
+      <button class="btn btn-primary followbtn" (click)="logout()">
+        <fa-icon [icon]="faSignOut" class="icon fa-sm" fontSize="12" style="color: #eee;"></fa-icon> {{ 'Logout' | translate }}
+      </button>
+    </div>
+  </div>
+</div>
