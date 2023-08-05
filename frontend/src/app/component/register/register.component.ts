@@ -135,8 +135,6 @@ export class RegisterComponent implements OnInit {
     if (this.avatarFile?.value) {
       user.append('avatarFile', this.avatarFile?.value);
     }
-    // user.append('roles', ['ROLE_USER'].toString());
-    user.append('gender', ['male'].toString());
 
     this.authenticationService.signup(user).subscribe({
       next: () => {
@@ -149,9 +147,5 @@ export class RegisterComponent implements OnInit {
         this.loading = false;
       },
     });
-  }
-
-  openFileBrowser() {
-    this.avatar.nativeElement.click();
   }
 }

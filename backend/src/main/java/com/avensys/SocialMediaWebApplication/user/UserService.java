@@ -1,10 +1,9 @@
 package com.avensys.SocialMediaWebApplication.user;
 
-import com.avensys.SocialMediaWebApplication.exceptions.ResourceAccessDeniedException;
-import com.avensys.SocialMediaWebApplication.exceptions.ResourceNotFoundException;
 import com.avensys.SocialMediaWebApplication.jwt.JwtService;
 import com.avensys.SocialMediaWebApplication.role.Role;
 import com.avensys.SocialMediaWebApplication.role.RoleRepository;
+import com.avensys.SocialMediaWebApplication.exceptions.ResourceNotFoundException;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -53,59 +52,6 @@ public class UserService {
         }
     }
 
-    public UserUpdateResponseDTO updateUserById(long id, UserUpdateRequestDTO userUpdateRequest) {
-        User userUpdate = findUserById(id);
-
-        // Check if user is admin or user to update belong to user before user is allowed update user profile
-//        if (!checkIsAdmin()){
-//            checkUserToUpdateBelongsToUser(userUpdate);
-//        }
-
-        userUpdate.setPassword(passwordEncoder.encode(userUpdateRequest.password()));
-        userUpdate.setEmail(userUpdateRequest.email());
-        userUpdate.setFirstName(userUpdateRequest.firstName());
-        userUpdate.setLastName(userUpdateRequest.lastName());
-        userUpdate.setGender(userUpdateRequest.gender());
-
-        User updatedUser = userRepository.save(userUpdate);
-        String token = jwtService.generateToken(updatedUser.getEmail());
-
-        return userToUserUpdateResponseDTO(userUpdate, token);
-    }
-
-    public UserUpdateResponseDTO updateUserByIdWithRoles(long id, UserUpdateRequestDTO userUpdateRequest) {
-        User userUpdate = findUserById(id);
-
-        // Check if user is admin or user to update belong to user before user is allowed update user profile
-        if (!checkIsAdmin()){
-            throw new ResourceAccessDeniedException("Access denied to resource");
-        }
-
-        userUpdate.setPassword(passwordEncoder.encode(userUpdateRequest.password()));
-        userUpdate.setEmail(userUpdateRequest.email());
-        userUpdate.setFirstName(userUpdateRequest.firstName());
-        userUpdate.setLastName(userUpdateRequest.lastName());
-        userUpdate.setGender(userUpdateRequest.gender());
-
-        // Update Roles
-        userUpdate.getRoles().clear();
-        Arrays.stream(userUpdateRequest.roles()).forEach(role -> {
-            System.out.println(role);
-            Role roleFound = roleRepository.findRolesByName(role);
-            userUpdate.addRole(roleFound);
-        });
-
-        User updatedUser = userRepository.save(userUpdate);
-        String token = jwtService.generateToken(updatedUser.getEmail());
-
-        return userToUserUpdateResponseDTO(userUpdate, token);
-    }
-
-    public void deleteUserById(long id) {
-        User user = findUserById(id);
-        userRepository.delete(user);
-    }
-
     public boolean existUserByEmail(String email) {
         return userRepository.existsByEmail(email);
     }
@@ -126,23 +72,7 @@ public class UserService {
                 user.getEmail(),
                 user.getFirstName(),
                 user.getLastName(),
-                user.getGender(),
                 user.getAvatarUrl(),
-                user.getCreatedAt(),
-                user.getUpdatedAt()
-        );
-    }
-
-    private UserUpdateResponseDTO userToUserUpdateResponseDTO(User user, String token) {
-        return new UserUpdateResponseDTO(
-                user.getId(),
-                user.getEmail(),
-                user.getFirstName(),
-                user.getLastName(),
-                user.getGender(),
-                user.getAvatarUrl(),
-                token,
-                user.getRolesList(),
                 user.getCreatedAt(),
                 user.getUpdatedAt()
         );

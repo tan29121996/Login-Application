@@ -31,9 +31,6 @@ public class User {
     @Column(name="last_name", nullable = false, length = 150)
     private String lastName;
 
-    @Column(nullable = false, length = 6)
-    private String gender;
-
     @Column(name= "avatar_url")
     private String avatarUrl;
 
@@ -64,7 +61,6 @@ public class User {
         this.password = password;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.gender = gender;
         this.avatarUrl = avatarUrl;
         this.avatarPublicId = avatarPublicId;
         this.createdAt = createdAt;
@@ -109,14 +105,6 @@ public class User {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
-    }
-
-    public String getGender() {
-        return gender;
-    }
-
-    public void setGender(String gender) {
-        this.gender = gender;
     }
 
     public String getAvatarUrl() {

@@ -7,7 +7,6 @@ public record UserResponseDTO(
         String email,
         String firstName,
         String lastName,
-        String gender,
         String avatarUrl,
         LocalDateTime createdAt,
         LocalDateTime updatedAt

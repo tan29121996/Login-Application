@@ -38,7 +38,6 @@ public class AuthenticationService {
         user.setPassword(passwordEncoder.encode(userRegistration.password()));
         user.setFirstName(userRegistration.firstName());
         user.setLastName(userRegistration.lastName());
-        user.setGender(userRegistration.gender());
 
         Arrays.stream(userRegistration.roles()).forEach(role -> {
             System.out.println(role);
