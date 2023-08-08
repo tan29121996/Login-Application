@@ -1,4 +1,4 @@
-.dropdown {
+.dropdown1 .dropdown2 {
 	position: relative;
 	display: inline-block;
 }
@@ -13,13 +13,13 @@
 
 .dropdown-menu {
 	position: absolute;
-	top: 150%;
 	right: -10px;
 	display: none;
 	list-style-type: none;
 	background: linear-gradient(#616067, #5e5f69);
 	border: 1px solid #74747b;
 	text-align: center;
+	margin-top: 10px;
 	padding: 10px
 }
 

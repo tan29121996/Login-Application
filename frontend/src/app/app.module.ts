@@ -14,12 +14,13 @@ import { RegisterComponent } from './component/register/register.component';
 import { ProfileComponent } from './component/profile/profile.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { RestrictedComponent } from './component/restricted/restricted.component';
 import { TranslationService } from './service/translate/translation.service';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpClient } from '@angular/common/http';
 import { LangbarComponent } from './component/langbar/langbar.component';
+import { ManageUsersComponent } from './component/manage-users/manage-users.component';
+import { UserModalComponent } from './component/user-modal/user-modal.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { LangbarComponent } from './component/langbar/langbar.component';
     LoginComponent,
     RegisterComponent,
     ProfileComponent,
-    RestrictedComponent,
+    ManageUsersComponent,
+    UserModalComponent,
     LangbarComponent,
   ],
   imports: [

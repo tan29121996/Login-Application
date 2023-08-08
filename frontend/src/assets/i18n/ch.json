@@ -33,5 +33,9 @@
     "User": "用户",
     "Link": "受限链接",
     "Restricted": "这是一个受限网页。",
-    "Logout": "登出"
+    "Logout": "登出",
+    "Home": "主页",
+    "PerPage": "每页用户",
+    "Update": "更新用户详情",
+    "Cancel": "取消"
 }

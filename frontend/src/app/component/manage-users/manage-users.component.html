@@ -1,0 +1,89 @@
+<app-langbar></app-langbar>
+<div class="container-fluid background">
+  <!-- Items per page -->
+  <div class="mt-3">
+    <label for="itemsPerPage" style="color: white;">{{ 'PerPage' | translate }}: </label>
+    <select
+      [(ngModel)]="usersPerPage"
+      name="itemsPerPage"
+      id="itemsPerPage"
+      class="ms-2"
+    >
+      <option value="5">5</option>
+      <option value="10">10</option>
+      <option value="20">20</option>
+      <option value="50">50</option>
+    </select>
+  </div>
+
+  <div class="table-container">
+    <table class="table table-striped mt-3 custom-table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th></th>
+          <th>{{ 'FirstName' | translate }}</th>
+          <th>{{ 'LastName' | translate }}</th>
+          <th>{{ 'Username' | translate }}</th>
+          <th>{{ 'Role' | translate }}</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody
+        *ngFor="
+          let user of filteredUsersList
+            | paginate : { itemsPerPage: usersPerPage, currentPage: page }
+        "
+      >
+        <tr (click)="goToUserProfile(user.id)">
+          <td>{{ user.id }}</td>
+          <td>
+            <img *ngIf="user.avatarUrl == null" class="circle-thumbnail" [src]="defaultImage" />
+            <img *ngIf="user.avatarUrl != null"class="circle-thumbnail" src="{{ user.avatarUrl }}" />
+          </td>
+          <td>{{ user.firstName }}</td>
+          <td>{{ user.lastName }}</td>
+          <td>{{ user.email }}</td>
+          <td>
+            <span *ngIf="user.rolesList.join(', ') === 'ROLE_USER'">User</span>
+            <span *ngIf="user.rolesList.join(', ') !== 'ROLE_USER'">Manager</span>
+          </td>
+          <td>
+            <button
+              class="btn btn-sm update-icon"
+              (click)="updateUser(user); $event.stopPropagation()"
+            >
+              <fa-icon [icon]="faPenToSquare"></fa-icon>
+            </button>
+            <button
+              class="btn btn-sm delete-icon"
+              (click)="deleteUser(user); $event.stopPropagation()"
+            >
+              <fa-icon [icon]="faTrash"></fa-icon>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Pagination -->
+  <div class="d-flex justify-content-center mt-5">
+    <pagination-controls
+      previousLabel="Previous"
+      nextLabel="Next"
+      (pageChange)="page = $event"
+    >
+    </pagination-controls>
+  </div>
+
+  <app-user-modal
+    [type]="'admin'"
+    (updatedUser)="updatedUser($event)"
+    [item]="selectedUser"
+    class="center-section"
+    *ngIf="openUser"
+    (cancel)="closeUserModal()"
+  >
+  </app-user-modal>
+</div>

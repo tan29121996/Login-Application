@@ -25,9 +25,6 @@ public record UserUpdateRequestDTO(
         @Min(value = 2, message = "Last name should be at least 2 characters long.")
         String lastName,
 
-        @NotBlank(message = "Gender cannot be blank.")
-        String gender,
-
         MultipartFile avatarFile,
 
         String avatarUrl,

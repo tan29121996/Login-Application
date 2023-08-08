@@ -33,5 +33,9 @@
     "User": "User",
     "Link": "Restricted Link",
     "Restricted": "This is a restricted webpage.",
-    "Logout": "Logout"
+    "Logout": "Logout",
+    "Home": "Home",
+    "PerPage": "Users per page",
+    "Update": "Update User Details",
+    "Cancel": "Cancel"
 }

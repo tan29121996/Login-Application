@@ -1,0 +1,127 @@
+.center-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.background {
+  background-image: url('https://news.microsoft.com/source/wp-content/uploads/2023/06/AdobeStock_428659694_Resized_2000px-1024x683.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.modal-container .open {
+  display: block;
+  z-index: 1000;
+  background-color: rgba(255, 255, 255, 0.8);
+}
+
+.modal-container {
+  display: none;
+}
+
+.center-section {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.table-container {
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+}
+
+.custom-table {
+  border: 1px solid #dee2e6 !important;
+}
+
+.custom-table thead th {
+  background: linear-gradient(to bottom, #3e8392, #336b7d);
+  color: white;
+}
+
+.custom-table tbody tr:hover td {
+  background-color: #b7e3ed !important;
+}
+
+.custom-table tbody tr td:hover {
+  cursor: pointer;
+}
+
+.custom-table td,
+.custom-table th {
+  vertical-align: middle !important;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.custom-table th:nth-child(7),
+.custom-table th:nth-child(8) {
+  text-align: center;
+}
+
+.custom-table th:nth-child(1),
+.custom-table td:nth-child(1),
+.custom-table th:nth-child(2),
+.custom-table td:nth-child(2) {
+  width: 3%;
+  text-align: center;
+}
+
+.custom-table th:nth-child(3),
+.custom-table td:nth-child(3) {
+  padding-left: 3%;
+}
+
+.custom-table th:nth-child(3),
+.custom-table td:nth-child(3),
+.custom-table th:nth-child(4),
+.custom-table td:nth-child(4) {
+  width: 13%;
+}
+
+.custom-table th:nth-child(5),
+.custom-table td:nth-child(5) {
+  width: 20%;
+  padding-right: 4%;
+}
+
+.custom-table th:nth-child(6),
+.custom-table td:nth-child(6) {
+  width: 15%;
+  padding-left: 2%;
+  padding-right: 2%;
+}
+
+.custom-table th:nth-child(7),
+.custom-table td:nth-child(7),
+.custom-table th:nth-child(8),
+.custom-table td:nth-child(8) {
+  width: 10%;
+  padding-right: 4%;
+}
+
+/* .custom-table tbody button:hover {
+  background-color: #6acadf !important;
+} */
+
+.update-icon:hover {
+  background-color: #1ab6d9 !important;
+}
+
+.delete-icon:hover {
+  background-color: rgb(235, 3, 3) !important;
+}
+
+.circle-thumbnail {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+}

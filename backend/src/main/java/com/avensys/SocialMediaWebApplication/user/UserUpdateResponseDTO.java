@@ -8,7 +8,6 @@ public record UserUpdateResponseDTO(
         String email,
         String firstName,
         String lastName,
-        String gender,
         String avatarUrl,
         String token,
         List<String> roles,

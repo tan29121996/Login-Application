@@ -55,7 +55,7 @@ public class User {
 
     public User() {}
 
-    public User(int id, String email, String password, String firstName, String lastName, String gender, String avatarUrl, String avatarPublicId, LocalDateTime createdAt, LocalDateTime updatedAt) {
+    public User(int id, String email, String password, String firstName, String lastName, String avatarUrl, String avatarPublicId, LocalDateTime createdAt, LocalDateTime updatedAt) {
         this.id = id;
         this.email = email;
         this.password = password;
@@ -158,9 +158,8 @@ public class User {
                 .map(Role::getName)
                 .collect(Collectors.toList());
     }
-
+    
     public List<Role> getRoles() {
         return roles;
     }
-
 }
